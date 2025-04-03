@@ -1,0 +1,4 @@
+sample,fastq_1,fastq_2
+water211124,/mnt/dm-3/hpc-scratch/test/water211124_R1.fastq.gz,/mnt/dm-3/hpc-scratch/test/water211124_R2.fastq.gz
+2016V-1054,/mnt/dm-3/hpc-scratch/test/2016V-1054_R1.fastq.gz,/mnt/dm-3/hpc-scratch/test/2016V-1054_R2.fastq.gz
+2023BM-00178,/mnt/dm-3/hpc-scratch/test/2023BM-00178_R1.fastq.gz,/mnt/dm-3/hpc-scratch/test/2023BM-00178_R2.fastq.gz
