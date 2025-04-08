@@ -125,7 +125,7 @@ workflow CBIRD {
     softwareVersionsToYAML(ch_versions)
         .collectFile(
             storeDir: "${params.outdir}/pipeline_info",
-            name:  "nfBIRDv${workflow.manifest.version}" + '_versions.yml',
+            name:  "nfBIRD_v${workflow.manifest.version}" + '_versions.yml',
             sort: true,
             newLine: true
         )
