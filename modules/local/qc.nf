@@ -50,7 +50,7 @@ process QC_CHECK {
     fi
     # contigs
     if awk "BEGIN {exit !(${number_of_scaffolds} > 200)}"; then
-        echo -n "FAIL:Contigs>200, " | >> QC_EVAL
+        echo -n "FAIL:Contigs>200, " >> QC_EVAL
     fi
     # genome ratio
     if awk "BEGIN {exit !(${genome_ratio} > 1.25)}"; then 
