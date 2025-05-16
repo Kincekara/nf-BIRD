@@ -1,6 +1,6 @@
 process AMRFINDER {
     label 'process_medium'
-    container 'staphb/ncbi-amrfinderplus:4.0.15-2024-12-18.1'
+    container 'staphb/ncbi-amrfinderplus:4.0.22-2025-03-25.1'
 
     input:
     tuple val(samplename), path(scaffolds), path(prodigal_faa), path(prodigal_gff), val(bracken_organism), val(mash_organism)
