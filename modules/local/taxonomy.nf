@@ -20,6 +20,7 @@ process PROFILE {
     def args2 = task.ext.args2
 
     """
+    set -euxo pipefail
     # Decompress the Kraken2 database
     mkdir db
     tar -I pigz -C ./db/ -xvf ${kraken2_db} 
@@ -33,7 +34,7 @@ process PROFILE {
     --paired \\
     ${args} \\
     --report-minimizer-data \\
-    ${read1} ${read2}
+    ${read1} ${read2} > ./k2_output.txt 2> ./k2_error.txt
     
     # Run bracken
     bracken \\
