@@ -1,6 +1,6 @@
 process CHECKM2 {
     label 'process_high'
-    container 'staphb/checkm2:1.0.2'
+    container 'staphb/checkm2:1.1.0'
 
     input:
     tuple val(samplename), path(scaffolds)
