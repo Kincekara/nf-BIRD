@@ -1,6 +1,6 @@
 process FASTP {
     label 'process_medium'
-    container 'staphb/fastp:0.24.0'
+    container 'staphb/fastp:0.24.1'
 
     input:
     tuple val(samplename), path(reads)
