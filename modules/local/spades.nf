@@ -1,6 +1,6 @@
 process SPADES {
     label 'process_high_memory'
-    container 'staphb/spades:4.1.0'
+    container 'staphb/spades:4.2.0'
 
     input:
     tuple val(samplename), path(reads), val(read_length)
