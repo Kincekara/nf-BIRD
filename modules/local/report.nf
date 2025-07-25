@@ -1,6 +1,6 @@
 process GENERATE_REPORT {
     label 'process_single'
-    container 'staphb/cbird-util:2.0'
+    container 'staphb/cbird-util:2.1'
 
     input: 
     tuple val(samplename), 
@@ -38,7 +38,6 @@ process GENERATE_REPORT {
     then
         # catch taxon & find genome size
         taxon=\$(awk -F '\\t' '{print \$1}' ${mash_result})
-        percent=\$(awk -F '\\t' '{print \$2}' ${mash_result})
         datasets summary genome taxon "\$taxon" --reference > gs.json
 
         #  create plain report
@@ -48,7 +47,6 @@ process GENERATE_REPORT {
             -d "${analysis_date}" \\
             -i "${labid}" \\
             -o "\$taxon" \\
-            -p "\$percent" \\
             -a ${amr_report} \\
             ${args}
         else

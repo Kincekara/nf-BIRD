@@ -1,0 +1,7 @@
+Identifying a resistance marker or point mutation does not necessarily predict the therapeutic failure of antimicrobial agents.  The gene or point mutation may be nonfunctional or expressed at clinically insignificant levels.
+The absence of a genetic marker or point mutation does not always indicate susceptibility.  
+The presence of a genetic marker or mutation does not always correlate with phenotypic test results, and discordance between phenotypic and genotypic test results is possible.
+Discrepancies can occur due to the fact that the mechanism of resistance may be something other than what the genotypic test can identify, or expression may be inducible by environmental factors.
+Isolates with phenotypic susceptibility despite the presence of resistance markers may indicate the potential for resistance to emerge during therapy.
+Antimicrobial genes may be expressed but not enough/sufficient for an isolate to change the phenotypic interpretation of the clinical breakpoint.
+Whole Genome Sequencing antimicrobial susceptibility test results should be used in conjunction with other phenotypic test results, when applicable.
