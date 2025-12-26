@@ -1,5 +1,5 @@
 process PROFILE {
-    container 'staphb/bracken:2.9'
+    container 'staphb/bracken:3.1'
 
     input:
     tuple val(samplename), path(reads)
@@ -55,7 +55,7 @@ process PROFILE {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         kraken2: \$(echo \$(kraken2 --version 2>&1) | sed 's/^.*Kraken version //; s/ .*\$//')
-        kraken2_db: \$(basename -s .tar.gz ${kraken2_db} | cut -d "_" -f2,3,4)
+        kraken2_db: \$(basename -s .tar.gz ${kraken2_db} | cut -d "_" -f2,3,4,5)
         bracken: \$(echo \$(bracken -v) | cut -f2 -d'v')
     END_VERSIONS
     """

@@ -1,6 +1,6 @@
 process QC_CHECK {
     label 'process_single'
-    container 'ubuntu:jammy-20240911.1'
+    container 'ubuntu:jammy-20251013'
     
     input:
     tuple val(samplename),
@@ -61,8 +61,9 @@ process QC_CHECK {
 
     # write pass if no fail
     if [ -f QC_EVAL ]; then
-        # remove trailing comma
-        sed -i '\$ s/, \$//; s/\\n//' QC_EVAL
+        # remove lines & trailing comma
+        sed -i '\$ s/, \$//' QC_EVAL
+        sed -i -z 's/\\n//g' QC_EVAL 
     else
         echo "PASS" | tee QC_EVAL    
     fi

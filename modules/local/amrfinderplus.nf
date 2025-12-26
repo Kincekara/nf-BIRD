@@ -1,13 +1,13 @@
 process AMRFINDER {
     label 'process_medium'
-    container 'staphb/ncbi-amrfinderplus:4.0.23-2025-06-03.1'
+    container 'staphb/ncbi-amrfinderplus:4.2.5-2025-12-03.1'
 
     input:
     tuple val(samplename), path(scaffolds), path(prodigal_faa), path(prodigal_gff), val(bracken_organism), val(mash_organism)
 
     output:
     path "*.tsv"
-    tuple val(samplename), env('amr_genes'), env('stress_genes'), env('virulence_genes'), env('amr_subclass'), emit: amr
+    tuple val(samplename), env('amr_genes'), env('stress_genes'), env('virulence_genes'), env('amr_class'), env('amr_subclass'), env('amr_type'), emit: amr
     tuple val(samplename), path("*_amrfinder_all.tsv"), emit: report
     path "versions.yml", emit: versions
 
@@ -198,16 +198,17 @@ process AMRFINDER {
     # create headers for 3 output files; tee to 3 files and redirect STDOUT to dev null so it doesn't print to log file
     head -n 1 ${samplename}_amrfinder_all.tsv | tee ${samplename}_amrfinder_stress.tsv ${samplename}_amrfinder_virulence.tsv ${samplename}_amrfinder_amr.tsv >/dev/null
     # looks for all rows with STRESS, AMR, or VIRULENCE and append to TSVs
-    # || true is so that the final grep exits with code 0, preventing failures
-    grep 'STRESS' ${samplename}_amrfinder_all.tsv >> ${samplename}_amrfinder_stress.tsv || true
-    grep 'VIRULENCE' ${samplename}_amrfinder_all.tsv >> ${samplename}_amrfinder_virulence.tsv || true
-    grep 'AMR' ${samplename}_amrfinder_all.tsv >> ${samplename}_amrfinder_amr.tsv || true
+    grep 'STRESS' ${samplename}_amrfinder_all.tsv | sort -t \$'\\t' -k12,12 -k13,13 >> ${samplename}_amrfinder_stress.tsv
+    grep 'VIRULENCE' ${samplename}_amrfinder_all.tsv | sort -t \$'\\t' -k12,12 -k13,13 >> ${samplename}_amrfinder_virulence.tsv
+    grep 'AMR' ${samplename}_amrfinder_all.tsv | sort -t \$'\\t' -k12,12 -k13,13 >> ${samplename}_amrfinder_amr.tsv || true
 
     # create string outputs for all genes identified in AMR, STRESS, VIRULENCE
     amr_genes=\$(awk -F '\\t' '{ print \$7 }' ${samplename}_amrfinder_amr.tsv | tail -n+2 | tr '\\n' ', ' | sed 's/.\$//')
     stress_genes=\$(awk -F '\\t' '{ print \$7 }' ${samplename}_amrfinder_stress.tsv | tail -n+2 | tr '\\n' ', ' | sed 's/.\$//')
     virulence_genes=\$(awk -F '\\t' '{ print \$7 }' ${samplename}_amrfinder_virulence.tsv | tail -n+2 | tr '\\n' ', ' | sed 's/.\$//')
+    amr_class=\$(awk -F '\\t' '{ print \$12 }' ${samplename}_amrfinder_amr.tsv | tail -n+2 | tr '\\n' ', ' | sed 's/.\$//')
     amr_subclass=\$(awk -F '\\t' '{ print \$13 }' ${samplename}_amrfinder_amr.tsv | tail -n+2 | tr '\\n' ', ' | sed 's/.\$//')
+    amr_type=\$(awk -F '\\t' 'NR==1{next} {if (\$11=="POINT" || \$11=="POINT_DISRUPT") \$9="point"; print \$9}' ${samplename}_amrfinder_amr.tsv | paste -sd, -)
 
     # if variable for list of genes is EMPTY, write string saying it is empty to float to Terra table
     if [[ -z "\$amr_genes" ]]; then

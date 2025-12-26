@@ -1,6 +1,6 @@
 process TBLASTN {
     label 'process_low'
-    container 'staphb/blast:2.15.0'
+    container 'staphb/blast:2.17.0'
 
     input:
     tuple val(samplename), path(scaffolds)

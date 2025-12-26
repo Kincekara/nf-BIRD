@@ -1,6 +1,6 @@
 process GENERATE_REPORT {
     label 'process_single'
-    container 'staphb/cbird-util:2.1'
+    container 'staphb/cbird-util:2.2'
 
     input: 
     tuple val(samplename), 

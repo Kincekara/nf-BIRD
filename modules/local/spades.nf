@@ -8,6 +8,7 @@ process SPADES {
     output:
     tuple val(samplename), file("*_contigs.fasta"), emit: contigs
     tuple val(samplename), file("*_scaffolds_trim.fasta"), emit: scaffolds
+    tuple val(samplename), file("*_scaffolds.gfa"), emit: assembly_graph
     path "versions.yml", emit: versions
 
     script:
@@ -29,6 +30,7 @@ process SPADES {
     # get & rename output   
     mv out/contigs.fasta ${samplename}_contigs.fasta
     mv out/scaffolds.fasta ${samplename}_scaffolds.fasta
+    mv out/assembly_graph_with_scaffolds.gfa ${samplename}_scaffolds.gfa
 
     # remove short scaffolds
     echo "Removing scaffolds shorter than ${contig_threshold}"

@@ -36,7 +36,7 @@ workflow TABULATE {
         "completeness\tcontamination\t" +
         "predicted_organism\tpercent_identity\t" +
         "mlst\tpubmlst_scheme\t" +
-        "amr_genes\tamr_stress_genes\tamr_virulence_genes\tamr_subclass\t" +
+        "amr_genes\tamr_stress_genes\tamr_virulence_genes\tamr_class\tamr_subclass\tamr_type\t" +
         "plasmidfinder_plasmids\t" +
         "blast_genes\t" +
         "est_genome_length_ratio\test_sequencing_depth\test_sequencing_depth_trim\t" +

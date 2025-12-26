@@ -1,6 +1,6 @@
 process ASSEMBLY_PREP {
     label 'process_medium'
-    container 'staphb/bbtools:39.25'
+    container 'staphb/bbtools:39.49'
 
     input:
     tuple val(samplename), path(reads_trimmed), val(total_reads) // from ch_filtered_reads
@@ -32,6 +32,8 @@ process ASSEMBLY_PREP {
         ref=/bbmap/resources/phix174_ill.ref.fa.gz \\
         k=31 \\
         hdist=1 \\
+        bgzip=f \\
+        unbgzip=f \\
         stats=${samplename}.phix.stats.txt
 
     PHIX_RATIO=\$(grep Matched ${samplename}.phix.stats.txt | awk '{print \$3}')

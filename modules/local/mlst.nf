@@ -1,5 +1,5 @@
 process MLST {
-    container 'staphb/mlst:2.23.0-2024-12-31'
+    container 'staphb/mlst:2.25.0'
 
     input:
     tuple val(samplename), path(scaffolds)
