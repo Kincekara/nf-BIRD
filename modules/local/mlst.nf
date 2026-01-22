@@ -1,43 +1,49 @@
 process MLST {
-    container 'staphb/mlst:2.25.0'
+    container 'staphb/mlst:2.32.2'
 
     input:
     tuple val(samplename), path(scaffolds)
 
     output:
-    path "*_mlst.tsv"
-    tuple val(samplename), path("*_mlst.tsv"), emit: report
+    path "*.mlst.tsv"
+    tuple val(samplename), path("${samplename}.mlst.tsv"), emit: report
+    tuple val(samplename), path("${samplename}.legacy.mlst.tsv"), emit: legacy_report
     tuple val(samplename), env('predicted_mlst'), env('pubmlst_scheme'), emit: mlst
     path "versions.yml", emit: versions
 
     script:
     def assembly = scaffolds
     """  
-    # create output header
-    echo -e "Filename\\tPubMLST_Scheme_name\\tSequence_Type_(ST)\\tAllele_IDs" > ${samplename}_ts_mlst.tsv
-    
+    # run mlst
     mlst \\
+        --full \\
         --threads ${task.cpus} \\
         --nopath \\
         ${assembly} \\
-        >> ${samplename}_ts_mlst.tsv
+        --outfile ${samplename}.mlst.tsv
     
-    # parse ts mlst tsv for relevant outputs
-    if [ "\$(tail -n +2 ${samplename}_ts_mlst.tsv | wc -l)" -eq 0 ]; then
-        predicted_mlst="No ST predicted"
-        pubmlst_scheme="NA"
-    else
-        pubmlst_scheme="\$(cut -f2 ${samplename}_ts_mlst.tsv | tail -n 1)"
-        predicted_mlst="ST\$(cut -f3 ${samplename}_ts_mlst.tsv | tail -n 1)"
-        if [ "\$pubmlst_scheme" = "-" ]; then
-            predicted_mlst="No ST predicted"
-            pubmlst_scheme="NA"
-        else
-            if [ "\$predicted_mlst" = "ST-" ]; then
-            predicted_mlst="No ST predicted"
-            fi
-        fi  
+    # rerun for A.baumannii oxford scheme
+    scheme=\$(awk -F'\\t' 'NR==2 {print \$2}' ${samplename}.mlst.tsv)
+    if [ "\$scheme" == "abaumannii_2" ]; then
+        mlst \\
+            --full \\
+            --threads ${task.cpus} \\
+            --nopath \\
+            --scheme "abaumannii" \\
+            ${assembly} \\
+            --outfile ${samplename}.mlst.oxford.tsv
+        # combine results
+        awk 'NR==2' ${samplename}.mlst.oxford.tsv >> ${samplename}.mlst.tsv
     fi
+
+    # parse ts mlst tsv for relevant outputs
+    predicted_mlst=\$(awk -F'\\t' 'NR==2 {if (\$3 == "-") print "No ST predicted"; else print "ST"\$3 }' ${samplename}.mlst.tsv)
+    pubmlst_scheme=\$(awk -F'\\t' 'NR==2 {if (\$2 == "-") print "NA"; else print \$2 }' ${samplename}.mlst.tsv)
+
+    # create legacy output file for report scripts.
+    echo -e "Filename\\tPubMLST_Scheme_name\\tSequence_Type_(ST)\\tAllele_IDs" > ${samplename}.legacy.mlst.tsv
+    awk -F'\\t' 'NR==2 {print \$1"\\t"\$2"\\t"\$3"\\t"\$6}' ${samplename}.mlst.tsv >> ${samplename}.legacy.mlst.tsv
+
     
     # version control
     cat <<-END_VERSIONS > versions.yml

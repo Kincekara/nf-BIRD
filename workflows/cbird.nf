@@ -126,7 +126,7 @@ workflow CBIRD {
     GENERATE_REPORT(
         FASTP.out.report
         .join(PROFILE.out.report)
-        .join(MLST.out.report)
+        .join(MLST.out.legacy_report)
         .join(AMRFINDER.out.report)
         .join(PLASMIDFINDER.out.report)
         .join(ASSEMBLY_PREP.out.phix)
