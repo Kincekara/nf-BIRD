@@ -45,7 +45,7 @@
                     "exists": true,
                     "mimetype": "application/gzip",
                     "pattern": "^\\S+\\.tar.gz$",
-                    "description": "Path to CheckM2 database"                    
+                    "description": "Path to CheckM2 database"
                 },
                 "samplename": {
                     "type": "string",
@@ -66,83 +66,102 @@
                     "errorMessage": "FastQ file for reads 2 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
                 },
                 "minimum_total_reads": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 30000
                 },
                 "adapters": {
                     "type": "string",
                     "format": "file-path"
                 },
                 "leading": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 1
                 },
                 "front_mean_quality": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 10
                 },
                 "trailing": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 1
                 },
                 "tail_mean_quality": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 10
                 },
                 "minlen": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 50
                 },
                 "window_size": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 4
                 },
                 "right_mean_quality": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 20
                 },
                 "read_quality": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 30
                 },
                 "normalization": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
                 "norm_target": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 100
                 },
                 "min_depth": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 5
                 },
                 "read_threshold": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 8000000
                 },
                 "min_hit_groups": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 3
                 },
                 "bracken_read_len": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 100
                 },
                 "bracken_threshold": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 10
                 },
                 "target_genes_fasta": {
                     "type": "string",
                     "format": "file-path"
                 },
                 "evalue": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0.001
                 },
                 "max_hsps": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 1
                 },
                 "percent_identity": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 90
                 },
-                    "html_footer": {
+                "html_footer": {
                     "type": "string"
                 },
                 "disclaimer": {
                     "type": "string",
                     "format": "file-path",
                     "mimetype": "text/plain"
-                },         
+                },
                 "notes": {
                     "type": "string",
                     "format": "file-path",
                     "mimetype": "text/plain"
-                },             
+                },
                 "logo1": {
                     "type": "string",
                     "format": "file-path",
@@ -155,7 +174,7 @@
                 },
                 "header_line1": {
                     "type": "string"
-                    },
+                },
                 "header_line2": {
                     "type": "string"
                 },
