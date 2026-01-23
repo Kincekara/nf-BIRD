@@ -1,0 +1,11 @@
+reports:
+  results.tsv:
+    display: "Results table"
+  *_basic_report.html:
+    display: "Basic report"
+  *_extended_report.html:
+    display: "Extended report"
+  *_QC_summary.html:
+    display: "QC summary report"
+  *_report.docx:
+    display: "DOCX report"
