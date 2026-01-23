@@ -47,7 +47,7 @@ sample2,/path/to/sample2_read1.fastq.gz,/path/to/sample2_read2.fastq.gz
 ### Running the pipeline
 ```bash
 # single sample
-nextflow run /path/to/nf-BIRD -profile docker --samplename --read1 /path/to/read1.fast.gz --read2 /path/to/read2.fastq.gz --kraken2_db /path/to/k2_standard_08gb_20250402.tar.gz --checkm2_db /path/to/checkm2_database.tar.gz
+nextflow run /path/to/nf-BIRD -profile docker --input single --samplename "sampleID" --read1 /path/to/read1.fast.gz --read2 /path/to/read2.fastq.gz --kraken2_db /path/to/k2_standard_08gb_20250402.tar.gz --checkm2_db /path/to/checkm2_database.tar.gz
 
 # multiple samples
 nextflow run /path/to/nf-BIRD -profile docker --kraken2_db /path/to/k2_standard_08gb_20250402.tar.gz --checkm2_db /path/to/checkm2_database.tar.gz --samplesheet /path/to/samplesheet.csv
