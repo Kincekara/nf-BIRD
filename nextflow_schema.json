@@ -107,11 +107,13 @@
                 },
                 "normalization": {
                     "type": "boolean",
-                    "default": true
+                    "default": true,
+                    "description": "Downsample reads non-randomly if a sample > 200X"
                 },
                 "norm_target": {
                     "type": "integer",
-                    "default": 100
+                    "default": 100,
+                    "description": "Normalization target"
                 },
                 "min_depth": {
                     "type": "integer",
