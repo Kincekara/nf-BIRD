@@ -15,6 +15,8 @@
 */
 
 include { CBIRD  } from './workflows/cbird'
+include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_nf-bird_pipeline'
+include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_nf-bird_pipeline'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -24,23 +26,23 @@ include { CBIRD  } from './workflows/cbird'
 workflow {    
     
     main:
-    if (params.read1 && params.read2 && params.samplename){
-        // Create a channel directly from the provided parameters
-        ch_samplesheet = Channel.of([params.samplename, file(params.read1), file(params.read2)])        
-    } else if (params.samplesheet){
-        // Parse the samplesheet CSV file to create the channel
-        Channel.fromPath(params.samplesheet)
-        .splitCsv(header: true, sep: ',')
-        .map { row -> 
-            [row.sample, [file(row.fastq_1), file(row.fastq_2)] ] 
-        }
-        .set { ch_samplesheet }               
-    } else {
-        error "No input file provided. Please provide a samplesheet file." 
-    }
+    //
+    // SUBWORKFLOW: Run initialisation tasks
+    //
+    PIPELINE_INITIALISATION (
+        params.version,
+        params.validate_params,
+        params.monochrome_logs,
+        args,
+        params.outdir,
+        params.input,
+        params.help,
+        params.help_full,
+        params.show_hidden
+    )
     //
     // WORKFLOW: Run main workflow
     //
-    CBIRD (ch_samplesheet)
+    CBIRD (PIPELINE_INITIALISATION.out.samplesheet)
 }
 
