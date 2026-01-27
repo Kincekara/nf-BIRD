@@ -78,36 +78,26 @@ workflow PIPELINE_INITIALISATION {
     //
     // Create channel from input file provided through params.input
     //
-    if (params.input == "samplesheet") {    
-        channel
-            .fromList(samplesheetToList(params.samplesheet, "${projectDir}/assets/schema_input.json"))
-            .map {
-                meta, fastq_1, fastq_2 ->
-                    if (!fastq_2) {
-                        return [ meta.id, [ fastq_1 ] ]
-                    } else {
-                        return [ meta.id, [ fastq_1, fastq_2 ] ]
-                    }
-            }
-            .groupTuple()
-            .map { samplesheet ->
-                validateInputSamplesheet(samplesheet)
-            }
-            .map {
-                meta, fastqs ->
-                    return [ meta, fastqs.flatten() ]
-            }
-            .set { ch_samplesheet }
-    } else if (params.input == "single") {
-        // check samplename, read1 and read2 params are provided
-        if (!params.samplename || !params.read1 || !params.read2) {
-            error "For 'single' input type, please provide 'samplename', 'read1' and 'read2' parameters."
-        } else {
-            println "Using single sample input: ${params.samplename}, ${params.read1}, ${params.read2}"
-            ch_samplesheet = channel.of([params.samplename, file(params.read1), file(params.read2)])
+    channel
+        .fromList(samplesheetToList(input, "${projectDir}/assets/schema_input.json"))
+        .map {
+            meta, fastq_1, fastq_2 ->
+                if (!fastq_2) {
+                    return [ meta.id, [ fastq_1 ] ]
+                } else {
+                    return [ meta.id, [ fastq_1, fastq_2 ] ]
+                }
         }
-        
-    }
+        .groupTuple()
+        .map { samplesheet ->
+            validateInputSamplesheet(samplesheet)
+        }
+        .map {
+            meta, fastqs ->
+                return [ meta, fastqs.flatten() ]
+        }
+        .set { ch_samplesheet }
+
     emit:
     samplesheet = ch_samplesheet
     versions    = ch_versions
