@@ -10,17 +10,9 @@
             "type": "object",
             "fa_icon": "fas fa-terminal",
             "description": "Define where the pipeline should find input data and save output data.",
-            "required": ["samplesheet", "kraken2_db", "checkm2_db", "outdir"],
+            "required": ["input", "kraken2_db", "checkm2_db", "outdir"],
             "properties": {
                 "input": {
-                    "type": "string",
-                    "description": "Type of input: 'samplesheet' or 'single'",
-                    "enum": ["samplesheet", "single"],
-                    "default": "samplesheet",
-                    "fa_icon": "fas fa-file-import",
-                    "help_text": "Select whether to provide a samplesheet with multiple samples, or single sample input files directly."
-                },
-                "samplesheet": {
                     "type": "string",
                     "format": "file-path",
                     "exists": true,
