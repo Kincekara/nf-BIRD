@@ -54,7 +54,8 @@ sample2,/path/to/sample2_read1.fastq.gz,/path/to/sample2_read2.fastq.gz
 ### Running the pipeline
 
 ```bash
-nextflow run /path/to/nf-BIRD -profile docker --input /path/to/samplesheet.csv \
+nextflow run /path/to/nf-BIRD -profile docker \
+  --input /path/to/samplesheet.csv \
   --kraken2_db /path/to/k2_standard_08gb_20250402.tar.gz \
   --checkm2_db /path/to/checkm2_database.tar.gz \
   --outdir /path/to/your_out_dir/
