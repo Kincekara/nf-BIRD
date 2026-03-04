@@ -10,27 +10,60 @@
 
 ## Pipeline tools
 
-- [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+- [FastP](https://onlinelibrary.wiley.com/doi/10.1002/imt2.70078)
 
-> Andrews, S. (2010). FastQC: A Quality Control Tool for High Throughput Sequence Data [Online].
+  >Shifu Chen. 2025. fastp 1.0: An ultra-fast all-round tool for FASTQ data quality control and preprocessing. iMeta 2025
 
-- [MultiQC](https://pubmed.ncbi.nlm.nih.gov/27312411/)
+- [BBTools](https://bbmap.org)
 
-> Ewels P, Magnusson M, Lundin S, Käller M. MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics. 2016 Oct 1;32(19):3047-8. doi: 10.1093/bioinformatics/btw354. Epub 2016 Jun 16. PubMed PMID: 27312411; PubMed Central PMCID: PMC5039924.
+  >Bushnell, B. (2014) BBMap: A Fast, Accurate, Splice-Aware Aligner.
 
+- [Kraken2](https://doi.org/10.1186/s13059-019-1891-0)
+
+  >Wood, D. E., Lu, J., & Langmead, B. (2019). Improved metagenomic analysis with Kraken 2. Genome Biology, 20(1). 
+‌
+- [Bracken](https://doi.org/10.7717/peerj-cs.104)
+
+  >Lu, J., Breitwieser, F. P., Thielen, P., & Salzberg, S. L. (2017). Bracken: estimating species abundance in metagenomics data. PeerJ Computer Science, 3, e104. 
+‌
+- [Spades](https://doi.org/10.1002/cpbi.102)
+
+  >Prjibelski, A., Antipov, D., Meleshko, D., Lapidus, A., & Korobeynikov, A. (2020). Using SPAdes De Novo Assembler. Current Protocols in Bioinformatics, 70(1). 
+‌
+- [Mash](https://doi.org/10.1186/s13059-019-1841-x)
+
+  >Ondov, B. D., Starrett, G. J., Sappington, A., Kostic, A., Koren, S., Buck, C. B., & Phillippy, A. M. (2019). Mash Screen: high-throughput sequence containment estimation for genome discovery. Genome Biology, 20(1). 
+‌
+- [QUAST](https://doi.org/10.1093/bioinformatics/btt086)
+
+  >Gurevich, A., Saveliev, V., Vyahhi, N., & Tesler, G. (2013). QUAST: quality assessment tool for genome assemblies. Bioinformatics, 29(8), 1072–1075. 
+‌
+- [CheckM2](https://doi.org/10.1038/s41592-023-01940-w)
+
+  >Chklovski, A., Parks, D. H., Woodcroft, B. J., & Tyson, G. W. (2023). CheckM2: a rapid, scalable and accurate tool for assessing microbial genome quality using machine learning. Nature Methods, 20(8), 1203–1212. 
+‌
+- [mlst](https://github.com/tseemann/mlst)
+
+  >Seemann T., mlst, GitHub. https://github.com/tseemann/mlst
+‌
+- [AMRFinderPlus](https://doi.org/10.1038/s41598-021-91456-0)
+
+  >Feldgarden, M., Brover, V., Gonzalez-Escalona, N., Frye, J. G., Haendiges, J., Haft, D. H., Hoffmann, M., Pettengill, J. B., Prasad, A. B., Tillman, G. E., Tyson, G. H., & Klimke, W. (2021). AMRFinderPlus and the Reference Gene Catalog facilitate examination of the genomic links among antimicrobial resistance, stress response, and virulence. Scientific Reports, 11(1). 
+‌
+- [BLAST+](https://doi.org/10.1093/nar/gkh435)
+
+  >McGinnis, S., & Madden, T. L. (2004). BLAST: at the core of a powerful and diverse set of sequence analysis tools. Nucleic Acids Research, 32(Web Server), W20–W25. 
+‌
+- [PlasmidFinder](https://doi.org/10.1128/aac.02412-14)
+
+  >Carattoli, A., Zankari, E., García-Fernández, A., Voldby Larsen, M., Lund, O., Villa, L., Møller Aarestrup, F., & Hasman, H. (2014). In Silico Detection and Typing of Plasmids using PlasmidFinder and Plasmid Multilocus Sequence Typing. Antimicrobial Agents and Chemotherapy, 58(7), 3895–3903. 
+‌
 ## Software packaging/containerisation tools
 
-- [Anaconda](https://anaconda.com)
+- [StaPH-B/docker-builds](https://doi.org/10.3201/eid3113.241363)
 
-  > Anaconda Software Distribution. Computer software. Vers. 2-2.4.0. Anaconda, Nov. 2016. Web.
+  >Florek, K. R., Young, E. L., Incekara, K., Libuit, K. G., & Kapsak, C. J. (2025). Advantages of Software Containerization in Public Health Infectious Disease Genomic Surveillance. Emerging Infectious Diseases, 31(13, Supplement), S18–S21.
 
-- [Bioconda](https://pubmed.ncbi.nlm.nih.gov/29967506/)
-
-  > Grüning B, Dale R, Sjödin A, Chapman BA, Rowe J, Tomkins-Tinch CH, Valieris R, Köster J; Bioconda Team. Bioconda: sustainable and comprehensive software distribution for the life sciences. Nat Methods. 2018 Jul;15(7):475-476. doi: 10.1038/s41592-018-0046-7. PubMed PMID: 29967506.
-
-- [BioContainers](https://pubmed.ncbi.nlm.nih.gov/28379341/)
-
-  > da Veiga Leprevost F, Grüning B, Aflitos SA, Röst HL, Uszkoreit J, Barsnes H, Vaudel M, Moreno P, Gatto L, Weber J, Bai M, Jimenez RC, Sachsenberg T, Pfeuffer J, Alvarez RV, Griss J, Nesvizhskii AI, Perez-Riverol Y. BioContainers: an open-source and community-driven framework for software standardization. Bioinformatics. 2017 Aug 15;33(16):2580-2582. doi: 10.1093/bioinformatics/btx192. PubMed PMID: 28379341; PubMed Central PMCID: PMC5870671.
 
 - [Docker](https://dl.acm.org/doi/10.5555/2600239.2600241)
 
