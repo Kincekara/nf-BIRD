@@ -1,4 +1,4 @@
-# Kincekara/nf-bird: Output
+# Kincekara/nf-BIRD: Output
 
 ## Introduction
 
