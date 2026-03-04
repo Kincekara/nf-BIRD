@@ -11,13 +11,11 @@ lint:
     - .github/ISSUE_TEMPLATE/bug_report.yml
     - .github/CONTRIBUTING.md
     - .github/PULL_REQUEST_TEMPLATE.md
-    - assets/email_template.txt
     - docs/README.md
   nextflow_config:
     - manifest.name
     - manifest.homePage
-  multiqc_config:
-    - report_comment
+  multiqc_config: False
   files_exist:
     - conf/igenomes.config
     - conf/igenomes_ignored.config
@@ -34,7 +32,7 @@ template:
   name: nf-BIRD
   description: Bacterial Identification and Resistance Detection
   author: Kutluhan Incekara
-  version: 1.0.0dev
+  version: 1.0.0
   force: true
   outdir: .
   skip_features:

@@ -9,12 +9,12 @@ Content-Type: text/html; charset=utf-8
 $email_html
 
 --nfcoremimeboundary
-Content-Type: image/png;name="nfbird_logo.png"
+Content-Type: image/png;name="Kincekara-nf-bird_logo.png"
 Content-Transfer-Encoding: base64
 Content-ID: <nfcorepipelinelogo>
-Content-Disposition: inline; filename="nfbird_logo.png"
+Content-Disposition: inline; filename="Kincekara-nf-bird_logo_light.png"
 
-<% out << new File("$projectDir/assets/nfbird_logo.png").
+<% out << new File("$projectDir/assets/Kincekara-nf-bird_logo_light.png").
     bytes.
     encodeBase64().
     toString().
