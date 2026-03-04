@@ -1,4 +1,4 @@
-# `Kincekara/nf-bird`: Contributing Guidelines
+# `Kincekara/nf-BIRD`: Contributing Guidelines
 
 Hi there!
 Many thanks for taking an interest in improving Kincekara/nf-bird.
@@ -11,9 +11,9 @@ Contributions to the code are even more welcome ;)
 
 ## Contribution workflow
 
-If you'd like to write some code for Kincekara/nf-bird, the standard workflow is as follows:
+If you'd like to write some code for Kincekara/nf-BIRD, the standard workflow is as follows:
 
-1. Check that there isn't already an issue about your idea in the [Kincekara/nf-bird issues](https://github.com/Kincekara/nf-bird/issues) to avoid duplicating work. If there isn't one already, please create one so that others know you're working on this
+1. Check that there isn't already an issue about your idea in the [Kincekara/nf-bird issues](https://github.com/Kincekara/nf-BIRD/issues) to avoid duplicating work. If there isn't one already, please create one so that others know you're working on this
 2. [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the [Kincekara/nf-bird repository](https://github.com/Kincekara/nf-bird) to your GitHub account
 3. Make the necessary changes / additions within your forked repository following [Pipeline conventions](#pipeline-contribution-conventions)
 4. Use `nf-core pipelines schema build` and add any new parameters to the pipeline JSON schema (requires [nf-core tools](https://github.com/nf-core/tools) >= 1.10).
@@ -58,7 +58,7 @@ These tests are run both with the latest available version of `Nextflow` and als
 
 ## Pipeline contribution conventions
 
-To make the `Kincekara/nf-bird` code and processing logic more understandable for new contributors and to ensure quality, we semi-standardise the way the code and other contributions are written.
+To make the `Kincekara/nf-BIRD` code and processing logic more understandable for new contributors and to ensure quality, we semi-standardise the way the code and other contributions are written.
 
 ### Adding a new step
 
@@ -72,8 +72,6 @@ If you wish to contribute a new step, please use the following coding standards:
 6. Add sanity checks and validation for all relevant parameters.
 7. Perform local tests to validate that the new code works as expected.
 8. If applicable, add a new test in the `tests` directory.
-9. Update MultiQC config `assets/multiqc_config.yml` so relevant suffixes, file name clean up and module plots are in the appropriate order. If applicable, add a [MultiQC](https://https://multiqc.info/) module.
-10. Add a description of the output files and if relevant any appropriate images from the MultiQC report to `docs/output.md`.
 
 ### Default values
 
@@ -108,7 +106,7 @@ This repo includes a devcontainer configuration which will create a GitHub Codes
 
 To get started:
 
-- Open the repo in [Codespaces](https://github.com/Kincekara/nf-bird/codespaces)
+- Open the repo in [Codespaces](https://github.com/Kincekara/nf-BIRD/codespaces)
 - Tools installed
   - nf-core
   - Nextflow
