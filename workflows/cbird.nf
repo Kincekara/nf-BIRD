@@ -31,7 +31,7 @@ workflow CBIRD {
     ch_samplesheet
 
     main:
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     // QC check, adapter removal, quality filtering and trimming
     FASTP(ch_samplesheet, params.adapters)
@@ -43,7 +43,7 @@ workflow CBIRD {
             remove: it[2].toInteger() <= params.minimum_total_reads
         }
         .set { reads_filter }
-    reads_filter.remove.view { "${it[0]} : NOT ENOUGH READS, NOT BE ANALYZED!" }
+    reads_filter.remove.view { item -> "${item[0]} : NOT ENOUGH READS, NOT TO BE ANALYZED!" }
 
     // Phix cleaning && normalization (if necessary)
     ASSEMBLY_PREP(reads_filter.keep)
@@ -133,7 +133,7 @@ workflow CBIRD {
         .join(QUAST.out.report)
         .join(CHECKM2.out.report)
         .join(PREDICT_TAXON.out.report, remainder: true)
-        .join(params.target_genes_fasta ? TBLASTN.out.report : Channel.empty(), remainder: true)
+        .join(params.target_genes_fasta ? TBLASTN.out.report : channel.empty(), remainder: true)
     )
 
     // Check QC metrics, mark passed and failed samples
@@ -155,7 +155,7 @@ workflow CBIRD {
         MLST.out.mlst,
         AMRFINDER.out.amr,
         PLASMIDFINDER.out.plasmids,
-        params.target_genes_fasta ? TBLASTN.out.stats : Channel.empty(),
+        params.target_genes_fasta ? TBLASTN.out.stats : channel.empty(),
         GENERATE_REPORT.out.stats,
         QC_CHECK.out.stats,
     )
@@ -163,7 +163,7 @@ workflow CBIRD {
     // Version
     softwareVersionsToYAML(ch_versions).collectFile(
         storeDir: "${params.outdir}/pipeline_info",
-        name: "nfBIRD_v${workflow.manifest.version}" + '_versions.yml',
+        name: "nf-BIRD_v${workflow.manifest.version}" + '_versions.yml',
         sort: true,
         newLine: true,
     )

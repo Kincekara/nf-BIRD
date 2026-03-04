@@ -28,7 +28,7 @@ workflow TABULATE {
         .join(ch_generate_report, remainder: true)
         .join(ch_qc_check, remainder: true)
 
-    header = Channel.of(
+    header = channel.of(
         "sample_id\tr1_reads\tr2_reads\ttotal_reads\ttotal_reads_trim\tr1_q30_raw\tR1_q30_trim\tr2_q30_raw\tr2_q30_trim\t" +
         "phix_ratio\t" +
         "bracken_taxon\tbracken_taxon_ratio\t" +

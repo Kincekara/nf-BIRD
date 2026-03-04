@@ -1,0 +1,50 @@
+repository_type: pipeline
+
+nf_core_version: 3.5.1
+
+lint:
+  files_unchanged:
+    - CODE_OF_CONDUCT.md
+    - assets/nf-core-nf-test_logo_light.png
+    - docs/images/nf-core-nf-test_logo_light.png
+    - docs/images/nf-core-nf-test_logo_dark.png
+    - .github/ISSUE_TEMPLATE/bug_report.yml
+    - .github/CONTRIBUTING.md
+    - .github/PULL_REQUEST_TEMPLATE.md
+    - docs/README.md
+    - .github/workflows/branch.yml
+  nextflow_config:
+    - manifest.name
+    - manifest.homePage
+  multiqc_config: False
+  files_exist:
+    - conf/igenomes.config
+    - conf/igenomes_ignored.config
+    - CODE_OF_CONDUCT.md
+    - assets/nf-core-nf-test_logo_light.png
+    - docs/images/nf-core-nf-test_logo_light.png
+    - docs/images/nf-core-nf-test_logo_dark.png
+    - .github/ISSUE_TEMPLATE/config.yml
+    - .github/workflows/awstest.yml
+    - .github/workflows/awsfulltest.yml
+
+template:
+  org: Kincekara
+  name: nf-BIRD
+  description: Bacterial Identification and Resistance Detection
+  author: Kutluhan Incekara
+  version: 1.0.0
+  force: true
+  outdir: .
+  skip_features:
+    - igenomes
+    - gpu
+    - modules
+    - code_linters
+    - citations
+    - multiqc
+    - fastqc
+    - modules
+    - changelog
+    - slackreport
+  is_nfcore: false
