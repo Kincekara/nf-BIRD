@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://raw.githubusercontent.com/Kincekara/nf-BIRD/master/nextflow_schema.json",
-    "title": "Kincekara/nf-BIRD pipeline parameters",
+    "title": "nf-BIRD pipeline parameters",
     "description": "Bacterial Identification and Resistance Detection",
     "type": "object",
     "$defs": {
