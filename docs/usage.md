@@ -1,4 +1,4 @@
-# Kincekara/nf-bird: Usage
+# nf-BIRD: Usage
 
 ## Introduction
 
