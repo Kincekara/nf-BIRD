@@ -71,10 +71,22 @@ nextflow run Kincekara/nf-bird -profile docker -params-file params.yaml
 with:
 
 ```yaml title="params.yaml"
+# required
 input: "./samplesheet.csv"
 outdir: "./results/"
 kraken2_db: "/path/to/kraken2_db.tar.gz"
 checkm2_db: "/path/to/checkm2_db.tar.gz"
+# optional for report generation
+logo1: '/path/to/logo1.jpg'
+logo2: '/path/to/logo12.jpg'
+notes: '/path/to/amr_report_notes.txt'
+disclaimer: '/path/to/amr_report_disclaimer.txt'
+header_line1: 'Institution Name'
+header_line2: 'Lab Name'
+header_line3: 'Address'
+header_line4: 'CLIA ID: 12345'
+header_line5: 'Phone (123) 456-7890'
+header_line6: 'Fax (123) 456-7890'
 ```
 
 You can also generate such `YAML`/`JSON` files via [nf-core/launch](https://nf-co.re/launch).
