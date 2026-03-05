@@ -39,24 +39,6 @@
                     "pattern": "^\\S+\\.tar.gz$",
                     "description": "Path to CheckM2 database"
                 },
-                "samplename": {
-                    "type": "string",
-                    "pattern": "^\\S+$",
-                    "errorMessage": "Sample name must be provided and cannot contain spaces",
-                    "meta": ["id"]
-                },
-                "read1": {
-                    "type": "string",
-                    "format": "file-path",
-                    "pattern": "^\\S+\\.f(ast)?q\\.gz$",
-                    "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
-                },
-                "read2": {
-                    "type": "string",
-                    "format": "file-path",
-                    "pattern": "^\\S+\\.f(ast)?q\\.gz$",
-                    "errorMessage": "FastQ file for reads 2 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
-                },
                 "minimum_total_reads": {
                     "type": "integer",
                     "default": 30000
