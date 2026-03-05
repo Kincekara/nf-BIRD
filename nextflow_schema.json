@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://raw.githubusercontent.com/Kincekara/nf-BIRD/master/nextflow_schema.json",
-    "title": "Kincekara/nf-BIRD pipeline parameters",
+    "title": "nf-BIRD pipeline parameters",
     "description": "Bacterial Identification and Resistance Detection",
     "type": "object",
     "$defs": {
@@ -39,31 +39,15 @@
                     "pattern": "^\\S+\\.tar.gz$",
                     "description": "Path to CheckM2 database"
                 },
-                "samplename": {
-                    "type": "string",
-                    "pattern": "^\\S+$",
-                    "errorMessage": "Sample name must be provided and cannot contain spaces",
-                    "meta": ["id"]
-                },
-                "read1": {
-                    "type": "string",
-                    "format": "file-path",
-                    "pattern": "^\\S+\\.f(ast)?q\\.gz$",
-                    "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
-                },
-                "read2": {
-                    "type": "string",
-                    "format": "file-path",
-                    "pattern": "^\\S+\\.f(ast)?q\\.gz$",
-                    "errorMessage": "FastQ file for reads 2 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
-                },
                 "minimum_total_reads": {
                     "type": "integer",
-                    "default": 30000
+                    "default": 30000,
+                    "description": "Minimum total reads required for the analysis"
                 },
                 "adapters": {
                     "type": "string",
-                    "format": "file-path"
+                    "format": "file-path",
+                    "description": "File path to the adapters for trimming"
                 },
                 "leading": {
                     "type": "integer",
@@ -129,7 +113,8 @@
                 },
                 "target_genes_fasta": {
                     "type": "string",
-                    "format": "file-path"
+                    "format": "file-path",
+                    "description": "File path to the target genes fasta file"
                 },
                 "evalue": {
                     "type": "number",
@@ -149,40 +134,50 @@
                 "disclaimer": {
                     "type": "string",
                     "format": "file-path",
-                    "mimetype": "text/plain"
+                    "mimetype": "text/plain",
+                    "description": "File path to the plain report disclaimer"
                 },
                 "notes": {
                     "type": "string",
                     "format": "file-path",
-                    "mimetype": "text/plain"
+                    "mimetype": "text/plain",
+                    "description": "File path to the plain report notes"
                 },
                 "logo1": {
                     "type": "string",
                     "format": "file-path",
-                    "mimetype": "image/jpeg"
+                    "mimetype": "image/jpeg",
+                    "description": "File path to the plain report logo for the left side"
                 },
                 "logo2": {
                     "type": "string",
                     "format": "file-path",
-                    "mimetype": "image/jpeg"
+                    "mimetype": "image/jpeg",
+                    "description": "File path to the plain report logo for the right side"
                 },
                 "header_line1": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "First line of the plain report header"
                 },
                 "header_line2": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Second line of the plain report header"
                 },
                 "header_line3": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Third line of the plain report header"
                 },
                 "header_line4": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Fourth line of the plain report header"
                 },
                 "header_line5": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Fifth line of the plain report header"
                 },
                 "header_line6": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Sixth line of the plain report header"
                 },
                 "outdir": {
                     "type": "string",
@@ -200,7 +195,8 @@
                 "multiqc_title": {
                     "type": "string",
                     "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
-                    "fa_icon": "fas fa-file-signature"
+                    "fa_icon": "fas fa-file-signature",
+                    "hidden": true
                 }
             }
         },
