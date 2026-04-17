@@ -67,6 +67,7 @@ nextflow run /path/to/nf-BIRD -profile docker \
 
 - **results.tsv :** Tab delimeted table that mimics Terra. It includes all important stats and results for all samples
 - **Individual reports for each sample**
+
   - basic report
   - extended report
   - plain report
