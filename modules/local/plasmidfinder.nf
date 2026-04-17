@@ -1,6 +1,6 @@
 process PLASMIDFINDER {
     label 'process_low'
-    container 'staphb/plasmidfinder:3.0.1'
+    container 'staphb/plasmidfinder:3.0.3'
 
     input:
     tuple val(samplename), path(scaffolds)
@@ -21,11 +21,18 @@ process PLASMIDFINDER {
         -i ${assembly} \\
         -l ${min_coverage} \\
         -t ${threshold} \\
-        -j data.json 
+        -x
 
-    # Create legacy tsv output
-    json_to_tsv.py
-    PF=\$(<PLASMIDS)
+    # parse outputs
+    if [ ! -f results_tab.tsv ]; then
+        PF="No plasmids detected in database"
+    else
+        PF="\$(tail -n +2 results_tab.tsv | uniq | cut -f 2 | sort | paste -s -d, - )"
+        if [ "\$PF" == "" ]; then
+            PF="No plasmids detected in database"
+        fi  
+    fi
+    echo "\$PF" | tee PLASMIDS
 
     # rename results
     mv results_tab.tsv ${samplename}.plasmid.tsv
@@ -34,7 +41,7 @@ process PLASMIDFINDER {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         plasmidfinder: \$(python -m plasmidfinder -v)
-        plasmidfinder_db: \$(</database/VERSION.txt)
+        plasmidfinder_db: \$(</plasmidfinder_db/VERSION)
     END_VERSIONS
     """
 }

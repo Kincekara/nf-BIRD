@@ -1,6 +1,6 @@
 process ASSEMBLY_PREP {
     label 'process_medium'
-    container 'staphb/bbtools:39.60'
+    container 'staphb/bbtools:39.49'
 
     input:
     tuple val(samplename), path(reads_trimmed), val(total_reads) // from ch_filtered_reads

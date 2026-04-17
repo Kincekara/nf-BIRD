@@ -11,7 +11,7 @@
 nf-BIRD is nextflow implementation of [C-BIRD](https://github.com/Kincekara/C-BIRD) pipline.
 Altough there are minor changes to leverage Nextflow features, nf-BIRD is aimed to give same results with C-BIRD.
 
-Equivelent C-BIRD version is **2.4.0**
+Equivelent C-BIRD version is **2.5.0**
 
 ## Dependencies
 
@@ -67,6 +67,7 @@ nextflow run /path/to/nf-BIRD -profile docker \
 
 - **results.tsv :** Tab delimeted table that mimics Terra. It includes all important stats and results for all samples
 - **Individual reports for each sample**
+
   - basic report
   - extended report
   - plain report
